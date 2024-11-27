@@ -4,8 +4,11 @@ import com.microsoft.playwright.*;
 
 import java.awt.*;
 
+import static com.microsoft.playwright.options.AriaRole.BUTTON;
+import static com.microsoft.playwright.options.AriaRole.TEXTBOX;
+
 public class v3_builtinLocators {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         Dimension dimension= Toolkit.getDefaultToolkit().getScreenSize();
         int width = (int) dimension.getWidth();
@@ -26,6 +29,43 @@ public class v3_builtinLocators {
 /*loginText bizim locator Webelement olarak dusunebiliriz
 innerText ise Seleniumdan getText() olarak dusunebiliriz
  */
+
+        // Locate in Shadow DOM
+        Locator shadowDom = page.locator("div", new Page.LocatorOptions().setHasText("Giriş yap veya kayıt ol")).last();
+        System.out.println("shadowDom " + shadowDom.innerText());
+
+
+        // getByRole
+        Locator phoneNumber = page.getByRole(TEXTBOX, new Page.GetByRoleOptions().setName("Telefon Numarası"));
+        System.out.println("2. phone number " + phoneNumber.innerText());
+        phoneNumber.click();
+        phoneNumber.fill("590-345");
+
+        Thread.sleep(2000);
+
+        // getByPlaceholder
+        Locator phoneNumber2  = page.getByPlaceholder("Telefon Numarası");
+        System.out.println("3. phone number " + phoneNumber2.innerText());
+
+
+        // getByLabel
+        Locator phoneContinueButton = page.getByLabel("login button");
+        System.out.println("4.phoneContinueButton " + phoneContinueButton.innerText());
+
+
+        // click login button
+        // getByRole
+        Locator loginButton = page.getByRole(BUTTON,new Page.GetByRoleOptions().setName("Giriş yap"));
+        loginButton.click();
+
+        // test id
+        Locator loginPhoneNumber = page.getByTestId("modal").getByPlaceholder("Telefon Numarası");
+        System.out.println("5. login phone number " + loginPhoneNumber.innerText());
+        loginPhoneNumber.click();
+        loginPhoneNumber.fill("6723");
+
+        Locator cancelButton = page.getByTestId("modal").getByTestId("button").first();
+        cancelButton.click();
 
     }
 }
