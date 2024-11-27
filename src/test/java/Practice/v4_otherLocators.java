@@ -23,9 +23,5 @@ public class v4_otherLocators {
         page.navigate("https://getir.com/");
         System.out.println("title " + page.title());
 
-        // css matching by text
-        // 1. has text
-        Locator loginText = page.locator("h5:has-text('Giriş yap veya kayıt ol')");
-        System.out.println("1. login text " + loginText.innerText());
     }
 }

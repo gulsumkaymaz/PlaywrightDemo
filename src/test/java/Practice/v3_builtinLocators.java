@@ -41,18 +41,5 @@ innerText ise Seleniumdan getText() olarak dusunebiliriz
         phoneNumber.click();
         phoneNumber.fill("590-345");
 
-        Thread.sleep(2000);
-
-        // getByPlaceholder
-        Locator phoneNumber2  = page.getByPlaceholder("Telefon Numarası");
-        System.out.println("3. phone number " + phoneNumber2.innerText());
-
-
-        // getByLabel
-        Locator phoneContinueButton = page.getByLabel("login button");
-        System.out.println("4.phoneContinueButton " + phoneContinueButton.innerText());
-
-
-
     }
 }
