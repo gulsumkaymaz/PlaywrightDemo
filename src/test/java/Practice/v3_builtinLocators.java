@@ -53,19 +53,6 @@ innerText ise Seleniumdan getText() olarak dusunebiliriz
         System.out.println("4.phoneContinueButton " + phoneContinueButton.innerText());
 
 
-        // click login button
-        // getByRole
-        Locator loginButton = page.getByRole(BUTTON,new Page.GetByRoleOptions().setName("Giriş yap"));
-        loginButton.click();
-
-        // test id
-        Locator loginPhoneNumber = page.getByTestId("modal").getByPlaceholder("Telefon Numarası");
-        System.out.println("5. login phone number " + loginPhoneNumber.innerText());
-        loginPhoneNumber.click();
-        loginPhoneNumber.fill("6723");
-
-        Locator cancelButton = page.getByTestId("modal").getByTestId("button").first();
-        cancelButton.click();
 
     }
 }
